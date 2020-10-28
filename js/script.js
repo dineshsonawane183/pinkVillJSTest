@@ -3,7 +3,7 @@
     var scrolled = false;
     var steps = 0;
     function init() {
-        var cdnFeedUrl = "/test/newsFeed/get_feed_data.php";
+        var cdnFeedUrl = "http://www.pinkvilla.com/photo-gallery-feed-page";
         window.addEventListener('scroll', event => onScroll(event));
         generateHtml(cdnFeedUrl);
 
@@ -13,7 +13,6 @@
         let dataFeedPromsise = fetchDataFeed(cdnFeedUrl);
         dataFeedPromsise.then((data) => {
             dataFeed = data;
-            console.log(data);
             generateLayout(dataFeed);
         });
         dataFeedPromsise.catch(function (error) {
@@ -29,14 +28,13 @@
         if (current + 100 > maxHeight * 0.8) {
             if (!scrolled) {
                 steps = steps+1; 
-                var cdnFeedUrl = "/test/newsFeed/get_feed_data.php";
-                generateHtml(cdnFeedUrl + "?step="+ (steps+1));
+                var cdnFeedUrl = "http://www.pinkvilla.com/photo-gallery-feed-page/page/";
+                generateHtml(cdnFeedUrl + steps);
             }
             scrolled = true;
             setTimeout(function () {
                 scrolled = false;
-            }, 10000)
-            console.log(current, maxHeight * 0.8);
+            }, 3000)
         } 
     }
 
@@ -45,7 +43,8 @@
         let nodes = dataFeed["nodes"];
         for (var i = 0; i < nodes.length; i++) {
             let imgPath = "http://www.pinkvilla.com/" + nodes[i].node.field_photo_image_section;
-            let innerHtml = ` <div class="row news-card p-3 bg-white">
+            let path = nodes[i].node.path;
+            let innerHtml = ` <div onclick="window.open('//pinkvilla.com${path}')" class="row news-card p-3 bg-white">
                 <div class="col-6 col-md-4">
                     <div class="feed-image">
                         <img id="imgFeed" class="news-feed-image rounded img-fluid img-responsive img-small" src="${imgPath}"></div>
