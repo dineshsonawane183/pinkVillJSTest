@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
+
+body {
+    background-color: #eee;
+    font-family: 'Manrope', sans-serif
+}
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+ }
+.news-card {
+    border-radius: 8px
+}
+
+.news-feed-image {
+    border-radius: 8px;
+    width: 100%;
+}
+.news-feed-text{
+    font-size: 14px;
+    font-family: 'Montserrat';
+}
+.img-small{
+    height: 123px;
+}
+@media (min-width: 1080px) {
+    body {
+        background-color: #eee;
+        font-family: 'Manrope', sans-serif
+    }
+    .img-small{
+        height: 80%;
+    }
+    .news-card {
+        border-radius: 8px
+    }
+    
+    .news-feed-image {
+        border-radius: 8px;
+        width: 100%;
+    }
+    
+}
